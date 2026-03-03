@@ -1,0 +1,40 @@
+[project]
+name = "subburn"
+version = "0.1.0"
+description = "Burn subtitles directly onto video frames — standard block text and word-level karaoke, no ffmpeg CLI required."
+authors = [{name = "Leo Jaimesson"}]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "av>=12.0",
+    "Pillow>=10.0",
+    "numpy>=1.24",
+]
+keywords = ["subtitles", "video", "karaoke", "whisper", "whisperx", "ffmpeg", "av", "transcription", "pillow", "pyav"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov", "ruff", "mypy"]
+
+[project.urls]
+Homepage = "https://github.com/leojaimesson/subburn"
+Repository = "https://github.com/leojaimesson/subburn"
+"Bug Tracker" = "https://github.com/leojaimesson/subburn/issues"
+
+[tool.setuptools.packages.find]
+include = ["subburn*"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
