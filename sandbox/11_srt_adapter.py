@@ -1,10 +1,7 @@
-"""Example: load subtitles from an SRT file and burn them onto a video."""
 from subburn import burn_subtitles, SubtitleStyle, Position, SRTAdapter
 
-# Accept a file path
 segments = SRTAdapter("subtitles.srt").get_segments()
 
-# Or pass raw SRT content directly
 raw_srt = """
 1
 00:00:00,000 --> 00:00:03,000
