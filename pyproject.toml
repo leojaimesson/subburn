@@ -11,7 +11,7 @@ dependencies = [
     "Pillow>=10.0",
     "numpy>=1.24",
 ]
-keywords = ["subtitles", "video", "karaoke", "whisper", "whisperx", "av", "transcription", "pillow", "pyav", "burn-subtitles", "hardcoded-subtitles", "highlight", "word-level", "video-processing", "subtitle-burner", "text-overlay", "word-timestamps", "speech-to-text", "timed-text", "frame-rendering"]
+keywords = ["subtitles", "video", "karaoke", "whisper", "whisperx", "av", "transcription", "pillow", "pyav", "burn-subtitles", "hardcoded-subtitles", "highlight", "word-level", "video-processing", "subtitle-burner", "text-overlay", "word-timestamps", "speech-to-text", "timed-text", "frame-rendering", "captions", "caption-burn", "animated-subtitles", "word-highlight", "karaoke-effect", "auto-subtitles", "srt", "reels", "shorts", "open-captions", "vtt", "webvtt"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
