@@ -6,6 +6,7 @@ from PIL import ImageColor, ImageDraw, ImageFont
 
 from ..enums.TextAlign import TextAlign
 from ..options.SubtitleStyle import SubtitleStyle
+from ..types.BoxShadow import BoxShadow
 
 
 def load_font(style: SubtitleStyle) -> ImageFont.FreeTypeFont:
