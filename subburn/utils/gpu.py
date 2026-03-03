@@ -8,12 +8,12 @@ import av
 @lru_cache(maxsize=1)
 def is_cuda_available() -> bool:
     try:
-        ctx = av.codec.Codec("h264_nvenc", "w").create()
-        ctx.width = 64
-        ctx.height = 64
-        ctx.pix_fmt = "yuv420p"
-        ctx.open()
-        return True
+        if "h264_nvenc" not in av.codecs_available:
+            return False
+        codec = av.codec.Codec("h264_nvenc", "w")
+        if hasattr(codec, "hardware_configs"):
+            return any(cfg.is_supported for cfg in codec.hardware_configs)
+        return codec.is_encoder
     except Exception:
         return False
 
