@@ -128,9 +128,16 @@ burn_subtitles(
 
 ---
 
-## Whisper integration
+## Adapters
 
-SubBurn ships adapters that convert Whisper and WhisperX output directly into segments.
+SubBurn ships adapters that convert different subtitle sources directly into segments.
+
+| Adapter | Source |
+|---|---|
+| `WhisperAdapter` | OpenAI Whisper result dict |
+| `WhisperXAdapter` | WhisperX result dict |
+| `SRTAdapter` | `.srt` file path or raw SRT string |
+| `VTTAdapter` | `.vtt` file path or raw WebVTT string |
 
 ### OpenAI Whisper
 
@@ -155,6 +162,50 @@ from subburn import burn_subtitles, WhisperXAdapter
 
 segments = WhisperXAdapter(result, include_speaker=True).get_segments()
 burn_subtitles("input.mp4", segments, "output.mp4", renderer=KaraokeRenderer())
+```
+
+### SRT files
+
+```python
+from subburn import burn_subtitles, SRTAdapter
+
+# From a file
+segments = SRTAdapter("subtitles.srt").get_segments()
+
+# Or from a raw SRT string
+raw_srt = """
+1
+00:00:00,000 --> 00:00:03,000
+Hello, world!
+
+2
+00:00:03,000 --> 00:00:06,000
+SubBurn supports SRT files natively.
+"""
+segments = SRTAdapter(raw_srt).get_segments()
+burn_subtitles("input.mp4", segments, "output.mp4")
+```
+
+### WebVTT files
+
+```python
+from subburn import burn_subtitles, VTTAdapter
+
+# From a file
+segments = VTTAdapter("subtitles.vtt").get_segments()
+
+# Or from a raw VTT string (e.g. downloaded from YouTube)
+raw_vtt = """
+WEBVTT
+
+00:00:00.000 --> 00:00:03.000
+Hello, world!
+
+00:00:03.000 --> 00:00:06.000
+SubBurn supports WebVTT files natively.
+"""
+segments = VTTAdapter(raw_vtt).get_segments()
+burn_subtitles("input.mp4", segments, "output.mp4")
 ```
 
 ---
