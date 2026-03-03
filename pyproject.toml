@@ -11,7 +11,7 @@ dependencies = [
     "Pillow>=10.0",
     "numpy>=1.24",
 ]
-keywords = ["subtitles", "video", "karaoke", "whisper", "whisperx", "ffmpeg", "av", "transcription", "pillow", "pyav"]
+keywords = ["subtitles", "video", "karaoke", "whisper", "whisperx", "av", "transcription", "pillow", "pyav", "burn-subtitles", "hardcoded-subtitles", "highlight", "word-level", "video-processing", "subtitle-burner", "text-overlay", "word-timestamps", "speech-to-text", "timed-text", "frame-rendering"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -23,9 +23,6 @@ classifiers = [
     "Topic :: Multimedia :: Video",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-
-[project.optional-dependencies]
-dev = ["pytest>=7.0", "pytest-cov", "ruff", "mypy"]
 
 [project.urls]
 Homepage = "https://github.com/leojaimesson/subburn"
