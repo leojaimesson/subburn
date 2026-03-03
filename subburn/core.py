@@ -89,9 +89,7 @@ def _resolve_encoder(use_gpu: bool) -> tuple[str, str]:
             "use_gpu=True requested but no CUDA device was found.\n"
             "Make sure:\n"
             "  1. An NVIDIA GPU is present in this machine.\n"
-            "  2. The ffmpeg binary is installed with CUDA support:\n"
-            "       apt install ffmpeg  |  https://ffmpeg.org/download.html\n"
-            "  3. CUDA drivers are installed and up to date.\n"
+            "  2. CUDA drivers are installed and up to date.\n"
             "Pass use_gpu=False to fall back to CPU encoding."
         )
     return "h264_nvenc", get_nvenc_preset()

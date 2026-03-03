@@ -1,7 +1,7 @@
 [project]
 name = "subburn"
 version = "0.1.0"
-description = "Burn subtitles directly onto video frames — standard block text and word-level karaoke, no ffmpeg CLI required."
+description = "Burn subtitles directly onto video frames with block, highlight, and karaoke renderers."
 authors = [{name = "Leo Jaimesson"}]
 readme = "README.md"
 license = {text = "MIT"}

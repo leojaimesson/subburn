@@ -64,6 +64,5 @@ if is_cuda_available():
     )
     print("GPU (NVENC CQ-18) done")
 else:
-    print("GPU not available – skipping NVENC example.")
-    print("Install: apt install ffmpeg  and ensure an NVIDIA GPU + drivers are present.")
+    print("GPU not available – skipping NVENC example. Ensure an NVIDIA GPU and CUDA drivers are present.")
 

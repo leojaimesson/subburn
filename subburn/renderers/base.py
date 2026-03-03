@@ -18,3 +18,4 @@ class SubtitleRenderer(ABC):
         current_time: float,
         style: SubtitleStyle,
     ) -> av.VideoFrame:
+        ...

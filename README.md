@@ -1,8 +1,8 @@
 # SubBurn
 
-Burn subtitles directly onto video frames — no ffmpeg CLI required for basic use.
+Burn subtitles directly onto video frames — no ffmpeg CLI required.
 
-SubBurn reads a list of timed text segments, renders them onto each video frame with Pillow, and re-encodes the result using PyAV (which bundles its own FFmpeg libraries). It ships three rendering modes out of the box:
+SubBurn reads a list of timed text segments, renders them onto each video frame with Pillow, and re-encodes the result using PyAV (which bundles its own FFmpeg libraries). GPU availability and encoder presets are also discovered through PyAV — no system ffmpeg binary needed at all. It ships three rendering modes out of the box:
 
 | Renderer | Style | Behaviour |
 |---|---|---|
@@ -16,18 +16,6 @@ SubBurn reads a list of timed text segments, renders them onto each video frame 
 
 ```bash
 pip install subburn
-```
-
-### System dependency (GPU only)
-
-The `ffmpeg` **binary** is only needed for NVIDIA NVENC GPU encoding detection. Without it, SubBurn silently falls back to CPU encoding (libx264). The PyAV wheel bundles all required FFmpeg **libraries** — no system install needed for normal use.
-
-```bash
-# Debian / Ubuntu
-sudo apt install ffmpeg
-
-# macOS
-brew install ffmpeg
 ```
 
 ---
@@ -226,7 +214,7 @@ Always supply a font file whose glyph coverage matches the target language.
 
 ## GPU encoding
 
-Pass `use_gpu=True` to use NVIDIA NVENC hardware encoding. Requires an NVIDIA GPU, CUDA drivers, and the `ffmpeg` binary compiled with NVENC support.
+Pass `use_gpu=True` to use NVIDIA NVENC hardware encoding. Requires an NVIDIA GPU and CUDA drivers. SubBurn detects GPU availability and selects the best encoder preset through PyAV — no system ffmpeg binary needed.
 
 ```python
 burn_subtitles("input.mp4", segments, "output.mp4", use_gpu=True)

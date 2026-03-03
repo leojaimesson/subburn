@@ -1,4 +1,3 @@
-import subprocess
 from fractions import Fraction
 from functools import lru_cache
 from typing import Optional, Tuple
@@ -6,43 +5,27 @@ from typing import Optional, Tuple
 import av
 
 
+@lru_cache(maxsize=1)
 def is_cuda_available() -> bool:
     try:
-        proc = subprocess.run(
-            [
-                "ffmpeg",
-                "-hide_banner",
-                "-loglevel", "error",
-                "-init_hw_device", "cuda=cuda:0",
-                "-filter_hw_device", "cuda",
-                "-f", "lavfi",
-                "-i", "nullsrc",
-                "-frames:v", "1",
-                "-f", "null",
-                "-"
-            ],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            timeout=5,
-        )
-        return proc.returncode == 0
+        ctx = av.codec.Codec("h264_nvenc", "w").create()
+        ctx.width = 64
+        ctx.height = 64
+        ctx.pix_fmt = "yuv420p"
+        ctx.open()
+        return True
     except Exception:
         return False
 
 
 @lru_cache(maxsize=1)
 def get_nvenc_preset() -> str:
-    candidates = ["p4", "p5", "p6", "p7", "slow", "medium", "fast", "default"]
+    candidates = ["p4", "p5", "p6", "p7", "slow", "medium", "fast"]
     try:
-        proc = subprocess.run(
-            ["ffmpeg", "-hide_banner", "-h", "encoder=h264_nvenc"],
-            capture_output=True,
-            text=True,
-            check=False,
-        )
-        text = (proc.stdout or "") + (proc.stderr or "")
+        codec = av.codec.Codec("h264_nvenc", "w")
+        option_names = {opt.name for opt in codec.options}
         for preset in candidates:
-            if preset in text:
+            if preset in option_names:
                 return preset
     except Exception:
         pass
