@@ -18,6 +18,7 @@ from .enums.Position import Position
 from .types import BoxShadow, Color
 from .adapters.whisper import WhisperAdapter
 from .adapters.whisperx import WhisperXAdapter
+from .adapters.srt import SRTAdapter
 
 try:
     __version__ = version("subburn")
@@ -43,5 +44,6 @@ __all__ = [
     "Color",
     "WhisperAdapter",
     "WhisperXAdapter",
+    "SRTAdapter",
 ]
 
