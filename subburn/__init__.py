@@ -19,6 +19,7 @@ from .types import BoxShadow, Color
 from .adapters.whisper import WhisperAdapter
 from .adapters.whisperx import WhisperXAdapter
 from .adapters.srt import SRTAdapter
+from .adapters.vtt import VTTAdapter
 
 try:
     __version__ = version("subburn")
@@ -45,5 +46,6 @@ __all__ = [
     "WhisperAdapter",
     "WhisperXAdapter",
     "SRTAdapter",
+    "VTTAdapter",
 ]
 
