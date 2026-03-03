@@ -1,8 +1,8 @@
 # SubBurn
 
-Burn subtitles directly onto video frames — no ffmpeg CLI required.
+Burn subtitles directly onto video frames.
 
-SubBurn reads a list of timed text segments, renders them onto each video frame with Pillow, and re-encodes the result using PyAV (which bundles its own FFmpeg libraries). GPU availability and encoder presets are also discovered through PyAV — no system ffmpeg binary needed at all. It ships three rendering modes out of the box:
+SubBurn reads a list of timed text segments, renders them onto each video frame with Pillow, and re-encodes the result using PyAV. It ships three rendering modes out of the box:
 
 | Renderer | Style | Behaviour |
 |---|---|---|
@@ -80,8 +80,8 @@ burn_subtitles(
     renderer=HighlightRenderer(),
     style=HighlightStyle(
         font_path="path/to/font.ttf",
-        highlight_color=(255, 215, 0),  # colour of the active word
-        zoom_scale=1.1,                 # slightly enlarge the active word
+        highlight_color=(255, 215, 0),
+        zoom_scale=1.1,
     ),
 )
 ```
@@ -121,7 +121,7 @@ burn_subtitles(
     renderer=KaraokeRenderer(),
     style=KaraokeStyle(
         font_path="path/to/font.ttf",
-        spoken_color=(255, 215, 0),  # colour of already-spoken words
+        spoken_color=(255, 215, 0),
     ),
 )
 ```
@@ -165,17 +165,17 @@ burn_subtitles("input.mp4", segments, "output.mp4", renderer=KaraokeRenderer())
 from subburn import SubtitleStyle, Position, BoxShadow, TextAlign, TextCase
 
 style = SubtitleStyle(
-    font_path="path/to/font.ttf",   # None → PIL fallback font
+    font_path="path/to/font.ttf",
     font_size=48,
     position=Position.BOTTOM_CENTER,
     padding=40,
     max_width_ratio=0.9,
     line_spacing=6,
-    color=(255, 255, 255),          # white text
-    stroke_color=(0, 0, 0),         # black outline
+    color=(255, 255, 255),
+    stroke_color=(0, 0, 0),
     stroke_width=2,
     box_shadow=BoxShadow(
-        color=(0, 0, 0, 0.6),       # RGBA, alpha as 0–1 float
+        color=(0, 0, 0, 0.6),
         offset=(3, 3),
         blur=4,
     ),
@@ -214,7 +214,7 @@ Always supply a font file whose glyph coverage matches the target language.
 
 ## GPU encoding
 
-Pass `use_gpu=True` to use NVIDIA NVENC hardware encoding. Requires an NVIDIA GPU and CUDA drivers. SubBurn detects GPU availability and selects the best encoder preset through PyAV — no system ffmpeg binary needed.
+Pass `use_gpu=True` to use NVIDIA NVENC hardware encoding. Requires an NVIDIA GPU and CUDA drivers.
 
 ```python
 burn_subtitles("input.mp4", segments, "output.mp4", use_gpu=True)
